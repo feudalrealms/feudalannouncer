@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id "com.github.breadmoirai.github-release" version "2.2.1"
+    id "idea"
+}
+
+group 'org.feudalrealms.wurmunlimited'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+    maven { url "http://gotti.no-ip.org/maven/repository" }
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    compile 'org.gotti.wurmunlimited:server-modlauncher:0.42'
+    compile 'com.github.Sindusk:DiscordRelay:v3.0'
+}
+
+jar {
+    archiveName "${project.name}.jar"
+}
+
+task dist(type: Zip) {
+    into("mods", {
+        into(project.name, {
+            from jar
+        })
+        from fileTree(dir: 'mods', include: '*')
+    })
+
+    archiveName "${project.name}-${project.version}.zip"
+}
