@@ -1,5 +1,6 @@
 package org.feudalrealms.wurmunlimited.feudalannouncer;
 
+import com.wurmonline.server.Servers;
 import com.wurmonline.server.players.Player;
 
 import org.gotti.wurmunlimited.modloader.interfaces.*;
@@ -17,10 +18,10 @@ public class FeudalAnnouncerMod implements WurmServerMod, ServerShutdownListener
     }
 
     public void onServerShutdown() {
-        DiscordRelay.sendToDiscord("gl-freedom", "The Server has shutdown.", false);
+        DiscordRelay.sendToDiscord("gl-freedom", "The Server " + Servers.getLocalServerName() + " has shutdown.", false);
     }
 
     public void onServerStarted() {
-        DiscordRelay.sendToDiscord("gl-freedom", "The Server has started.", false);
+        DiscordRelay.sendToDiscord("gl-freedom", "The Server  " + Servers.getLocalServerName() + " has started.", false);
     }
 }
